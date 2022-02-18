@@ -41,4 +41,4 @@ node src/helloWithType.ts
 > SyntaxError: Unexpected token ':'
 ```
 
-To make `src/helloWithType.ts` successfully run on Node.js we need some additional library. Continue reading [here]()
+To make `src/helloWithType.ts` successfully run on Node.js we need some additional setup and libraries. Continue reading [here](https://github.com/harum/run-typescript-on-node/blob/main/run-ts.md)
