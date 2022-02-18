@@ -1,14 +1,17 @@
 {
   "compilerOptions": {
+    // Target latest version of ECMAScript.
     "target": "ES2018",
-    "module": "ESNext",
+    // Search under node_modules for non-relative imports.
     "moduleResolution": "Node",
-    "lib": ["ESNext", "DOM"],
+    // Handle DOM definition and console
+    "lib": ["DOM"],
+    // Import non-ES modules as default imports.
     "esModuleInterop": true,
+    // Process & infer types from .js files.
     "allowJs": true,
-    "sourceMap": true,
+    // Enable strictest settings like strictNullChecks & noImplicitAny.
     "strict": true,
-    "experimentalDecorators": true
   },
-  "exclude": ["node_modules", "dist"]
+  "include": [ "src" ]
 }

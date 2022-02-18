@@ -57,19 +57,21 @@ To fix this, we need to configure our `tsconfig.json` andd `"DOM"` lib into the 
 ```json
 {
   "compilerOptions": {
+    // Target latest version of ECMAScript.
     "target": "ES2018",
-    "module": "ESNext",
+    // Search under node_modules for non-relative imports.
     "moduleResolution": "Node",
-    "lib": ["ESNext", "DOM"],
+    // Handle DOM definition and console
+    "lib": ["DOM"],
+    // Import non-ES modules as default imports.
     "esModuleInterop": true,
+    // Process & infer types from .js files.
     "allowJs": true,
-    "sourceMap": true,
+    // Enable strictest settings like strictNullChecks & noImplicitAny.
     "strict": true,
-    "experimentalDecorators": true
   },
-  "exclude": ["node_modules", "dist"]
+  "include": [ "src" ]
 }
-
 ```
 
 ```bash
@@ -79,3 +81,50 @@ npx ts-node src/helloWithType.ts
 ```
 
 ## Using `babel`
+### Install Babel
+Assume that we already install `typescript`. For this setup we need to install these additional library.
+```bash
+yarn add --dev @babel/core @babel/cli @babel/preset-env @babel/preset-typescript
+```
+
+### Setup Babel Config
+Then we need to create babel configuration. Create `babel.config.js` using this config.
+```js
+module.exports = {
+  presets: [
+    '@babel/preset-typescript', // Need this preset to process TypeScript
+    '@babel/preset-env']
+}
+```
+
+### Adjust TypeScript Configuration
+We already have `tsconfig.json`. For this babel option, we will separate the TypeScript configuration for the clarity about the different in setting that need to be handled. Create `tsconfig.babel.json` with this value
+```json
+{
+  "extends": "./configs/base",
+  "compilerOptions": {
+    // Don't emit; allow Babel to transform files.
+    "noEmit": true,
+  },
+}
+```
+
+### Running
+We can use `npx` when running the babel.
+```bash
+npx babel src --out-dir dist --extensions '.ts'
+
+> Successfully compiled 2 files with Babel (137ms).
+```
+
+We also can add script in `package.json`
+```json
+"scripts": {
+  "build:babel": "babel src --out-dir dist --extensions '.ts'"
+},
+```
+
+And run this to trigger the transpilation
+```bash
+yarn build:babel
+```
