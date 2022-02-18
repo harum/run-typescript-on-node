@@ -1,5 +1,7 @@
+import greeting from "./greeting"
+
 function helloWithType(name: string): void {
-  console.log(`Hello ${name} with types`)
+  console.log(`${greeting()}, ${name} with types`)
 }
 
 helloWithType('Harum')
