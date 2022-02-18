@@ -3,16 +3,17 @@
 We have several option to run TypeScript on Node.js.
 
 From output file perspective, we have:
--  Output JavaScript file from TypeScript to `dist` folder, then run it using `node`
--  Run TypeScript without generating output file
+-  Output JavaScript file from TypeScript to `dist` folder, then run it using `node`. It is preferably using this approach for production.
+-  Run TypeScript without generating output file. It is preferably using this approach for development.
 
 
 From library perspective, we also have some option:
--  using `tsc` command line
+-  using `tsc`
 -  using `ts-node`
 -  using `babel`
+-  using `babel-node`
 
-## Using `tsc` command line
+## Using `tsc`
 ### Setup
 ```bash
 yarn add typescript
@@ -80,6 +81,8 @@ npx ts-node src/helloWithType.ts
 > Hello Harum with types
 ```
 
+When we run this command, there is no `.js` file created in `dist` folder.
+
 ## Using `babel`
 ### Install Babel
 Assume that we already install `typescript`. For this setup we need to install these additional library.
@@ -98,13 +101,14 @@ module.exports = {
 ```
 
 ### Adjust TypeScript Configuration
-We already have `tsconfig.json`. For this babel option, we will separate the TypeScript configuration for the clarity about the different in setting that need to be handled. Create `tsconfig.babel.json` with this value
+We already have `tsconfig.json`. For this babel option, we will add additional configuration
 ```json
 {
-  "extends": "./configs/base",
   "compilerOptions": {
+    ...
     // Don't emit; allow Babel to transform files.
     "noEmit": true,
+    ...
   },
 }
 ```
@@ -132,6 +136,23 @@ yarn build:babel
 After the `.js` file is created, we can continue to run it using `node`.
 ```bash
 node dist/helloWithType.js
+
+> Hello Harum with types
+```
+
+## Using `babel-node`
+We already setup TypeScript using `babel`. How about we don't want to output the `.js` file into `dist`, for example for development purpose? We can use `babel-noe`
+
+### Setup
+Assume we already follow step using `babel` above. We then only need to install this.
+```bash
+yarn add --dev @babel/node
+```
+
+### Running
+When we run this, it is not emit file `.js` into `dist` folder.
+```bash
+npx babel-node src/helloWithType.ts -x ".ts"
 
 > Hello Harum with types
 ```

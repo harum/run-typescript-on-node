@@ -1,7 +1,0 @@
-{
-  "extends": "./configs/base",
-  "compilerOptions": {
-    // Don't emit; allow Babel to transform files.
-    "noEmit": true,
-  },
-}
