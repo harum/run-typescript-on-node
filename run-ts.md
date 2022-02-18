@@ -128,3 +128,10 @@ And run this to trigger the transpilation
 ```bash
 yarn build:babel
 ```
+
+After the `.js` file is created, we can continue to run it using `node`.
+```bash
+node dist/helloWithType.js
+
+> Hello Harum with types
+```
