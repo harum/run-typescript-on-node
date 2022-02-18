@@ -16,6 +16,9 @@
     // // Don't emit; allow Babel to transform files.
     // "noEmit": true
     "outDir": "./dist",
+    "paths": {
+      "~/*": ["./*"],
+    }
   },
   "include": [ "src" ]
 }

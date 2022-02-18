@@ -110,3 +110,92 @@ node dist/helloWithType.js
 
 > Good morning, Harum with types
 ```
+
+## Handle Alias
+
+### Problem
+Let say we want to add alias on our project as follow.
+```json
+  "compilerOptions": {
+    "paths": {
+      "~/*": ["./*"],
+    }
+  }
+```
+
+Let say we also add new file
+```ts
+// lib/getDate
+export default function getDate(): string {
+  return (new Date()).toLocaleString()
+}
+
+```
+
+And adjust current file to
+```ts
+import getDate from "~/lib/getDate"
+import greeting from "./greeting"
+
+function helloWithType(name: string): void {
+  console.log(getDate())
+  console.log(`${greeting()}, ${name} with types`)
+}
+
+helloWithType('Harum')
+```
+
+But we got error when run it using `tsc`
+```bash
+npx tsc -p tsconfig.json
+node dist/src/helloWithType.js
+
+> Error: Cannot find module '~/lib/getDate'
+```
+
+or using `ts-node`
+```bash
+npx ts-node src/helloWithType.ts
+
+> Error: Cannot find module '~/lib/getDate'
+```
+
+From the above error we know that TypeScript does not change the module path. We need a way so Node.js can locate `~/lib/getDate` successfully.
+
+### Solution
+We can use `module-alias` to make Node.js be able to recognize the alias path.
+
+```bash
+yarn add module-alias
+yarn add -D @types/module-alias
+```
+
+Add the following line into `package.json`
+```json
+"_moduleAliases": {
+  "~/lib"      : "./lib"
+}
+```
+
+```ts
+// add module alias register
+import 'module-alias/register'
+
+import getDate from "~/lib/getDate"
+import greeting from "./greeting"
+
+function helloWithType(name: string): void {
+  console.log(getDate())
+  console.log(`${greeting()}, ${name} with types`)
+}
+
+helloWithType('Harum')
+```
+
+When we want to run the code, it will run successfully.
+```bash
+npx ts-node src/helloWithType.ts
+
+> 2/18/2022, 10:45:34 AM
+> Good morning, Harum with types
+```
