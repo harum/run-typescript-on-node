@@ -16,8 +16,6 @@ Assume we have this `tsconfig.json` value
     "allowJs": true,
     // Enable strictest settings like strictNullChecks & noImplicitAny.
     "strict": true,
-    // // Don't emit; allow Babel to transform files.
-    // "noEmit": true
     "outDir": "./dist",
   },
   "include": [ "src" ]
@@ -94,8 +92,6 @@ So we need to add additional configuration on our `compilerOptions` in `tsconfig
     "allowJs": true,
     // Enable strictest settings like strictNullChecks & noImplicitAny.
     "strict": true,
-    // // Don't emit; allow Babel to transform files.
-    // "noEmit": true
     "outDir": "./dist",
   },
   "include": [ "src" ]

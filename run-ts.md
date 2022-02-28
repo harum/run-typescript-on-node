@@ -13,7 +13,8 @@ From library perspective, we also have some option:
 -  using `babel`
 -  using `babel-node`
 
-## Using `tsc`
+## Using `tsc` CLI
+[`tsc`](https://www.typescriptlang.org/docs/handbook/compiler-options.html) CLI compile the closest project defined by a `tsconfig.json`. This is one of the most basic way to transpile and run TypeScript code.
 ### Setup
 ```bash
 yarn add typescript
@@ -33,6 +34,7 @@ node dist/helloWithType.js
 ```
 
 ## Using `ts-node`
+[`ts-node`](https://github.com/TypeStrong/ts-node) is a TypeScript execution and REPL for node.js. It support source map and native ESM support. With `ts-node`, we can directly run a TypeScript file without outputting the compiled file into the `dist` folder first.
 ### Setup
 We already install `typescript` above, so for this step, we only need to install `ts-node`
 ```bash
@@ -84,6 +86,7 @@ npx ts-node src/helloWithType.ts
 When we run this command, there is no `.js` file created in `dist` folder.
 
 ## Using `babel`
+You may be want to use [`babel`](https://babeljs.io/) for transpiling and only use `tsc` for type checking.
 ### Install Babel
 Assume that we already install `typescript`. For this setup we need to install these additional library.
 ```bash
@@ -141,7 +144,7 @@ node dist/helloWithType.js
 ```
 
 ## Using `babel-node`
-We already setup TypeScript using `babel`. How about we don't want to output the `.js` file into `dist`, for example for development purpose? We can use `babel-noe`
+We already setup TypeScript using `babel`. How about we don't want to output the `.js` file into `dist`, for example for development purpose? We can use [`babel-node`](https://babeljs.io/docs/en/babel-node).
 
 ### Setup
 Assume we already follow step using `babel` above. We then only need to install this.

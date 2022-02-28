@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    // Use common js.
     "module": "CommonJS",
     // Target latest version of ECMAScript.
     "target": "ES2018",
