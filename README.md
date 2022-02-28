@@ -11,4 +11,4 @@ If you want to use this document as a guide, I suggest you to read it step by st
 -  [Introduction](https://github.com/harum/run-typescript-on-node/blob/main/introduction.md)
 -  [Setup and running](https://github.com/harum/run-typescript-on-node/blob/main/run-ts.md)
 -  [Handle Module and Alias](https://github.com/harum/run-typescript-on-node/blob/main/module-and-alias.md)
--  [Watch and Auto Reload on Development]()
+-  [Watch and Auto Reload on Development](https://github.com/harum/run-typescript-on-node/blob/main/auto-reload.md)
